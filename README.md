@@ -1,24 +1,35 @@
 # fresh-produce-market-prices
+
 Scrape fresh produce data from johannesburg market website
 
-Create a virtual environment<br>
-`
-python -m venv name
-`
+Create a virtual environment
 
-Within your virtual environment<br> 
+```bash
+python -m venv name
 ```
+
+Within your virtual environment
+
+```bash
 pip install scrapy 
 pip install ipython
 ```
 
 Inside the **scrapy.cfg** below the [settings]
-insert: <br>
-`
-shell = ipython
-`
+insert:
 
-For data processing, there are two options: <br>
+```bash
+shell = ipython
+```
+
+Create a scrapy project
+
+```bash
+scrapy startproject project_name
+```
+
+For data processing, there are two options:
+
 1. Serializer (inserted in **items.py**)
 2. Pipelines
 
