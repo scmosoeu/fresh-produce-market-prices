@@ -25,8 +25,22 @@ shell = ipython
 Create a scrapy project
 
 ```bash
-scrapy startproject project_name
+scrapy startproject project_name [project_dir]
 ```
+
+Create a crawler
+
+```bash
+cd project_dir
+scrapy genspider mydomain.com
+```
+
+Run a spider
+
+```bash
+scrapy crawl spider_name
+```
+
 
 For data processing, there are two options:
 
