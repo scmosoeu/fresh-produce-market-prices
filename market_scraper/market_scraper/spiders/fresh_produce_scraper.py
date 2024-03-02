@@ -15,6 +15,7 @@ class FreshProduceScraperSpider(scrapy.Spider):
         for market_data in price_table:
 
             yield {
+                "information_date": information_date,
                 "commodity": market_data.css("td.tleft2 ::text").get(),
                 "total_value_sold": market_data.xpath("(.//td[@class='tleft'])[1]/text()").get(),
                 "total_value_sold_mtd": market_data.xpath("(.//td/br)[1]/following-sibling::text()").get(),
