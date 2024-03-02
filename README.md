@@ -32,7 +32,7 @@ Create a crawler
 
 ```bash
 cd project_dir
-scrapy genspider mydomain.com
+scrapy genspider spidername mydomain.com
 ```
 
 Run a spider
