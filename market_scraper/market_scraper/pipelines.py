@@ -41,6 +41,8 @@ class FreshProduceScraperPipeline:
 
         for int_field in int_fields:
             value = adapter.get(int_field)
+            if '_mtd' in int_field:
+                value = value.split(':')[1].strip()
             value = value.replace(',', '')
             adapter[int_field] = int(value)
 
@@ -82,6 +84,8 @@ class FreshProduceContainerPipeline:
 
         for int_field in int_fields:
             value = adapter.get(int_field)
+            if '_mtd' in int_field:
+                value = value.split(':')[1].strip()
             value = value.replace(',', '')
             adapter[int_field] = int(value)
 
