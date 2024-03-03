@@ -16,10 +16,10 @@ class FreshProduceContainerSpider(scrapy.Spider):
             page_url = f"https://joburgmarket.co.za/jhbmarket/jhb-market/dailyprices.php?commodity={value}&containerall=1"
 
             yield scrapy.Request(
-                url=page_url, callback=self.parse_api
+                url=page_url, callback=self.extract_container_stats
             )
 
-    def parse_api(self, response):
+    def extract_container_stats(self, response):
 
         information_date = response.css("#right2 p b ::text").get()
         fresh_produce = response.css(".statistics b::text").get()
