@@ -53,7 +53,7 @@ Define what is needed in the block of data
 
 ## pipelines.py
 
-For data processing
+For data processing, validation, writing to a database
 
 For data processing, there are two options:
 
