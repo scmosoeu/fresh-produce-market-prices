@@ -27,6 +27,8 @@ class FreshProduceScraperPipeline:
 
         for float_field in float_fields:
             value = adapter.get(float_field)
+            if '_mtd' in float_field:
+                value = value.split(':')[1].strip()
             value = value.replace('R', '').replace(',', '')
             adapter[float_field] = float(value)
 
@@ -66,6 +68,8 @@ class FreshProduceContainerPipeline:
 
         for float_field in float_fields:
             value = adapter.get(float_field)
+            if '_mtd' in float_field:
+                value = value.split(':')[1].strip()
             value = value.replace('R', '').replace(',', '')
             adapter[float_field] = float(value)
 
