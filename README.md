@@ -47,6 +47,10 @@ Run a spider and write to file
 scrapy crawl spider_name -O filename.extension
 ```
 
+## items.py
+
+Define what is needed in the block of data
+
 For data processing, there are two options:
 
 1. Serializer (inserted in **items.py**)

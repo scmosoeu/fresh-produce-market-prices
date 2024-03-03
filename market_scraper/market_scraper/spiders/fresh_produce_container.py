@@ -1,4 +1,5 @@
 import scrapy
+from market_scraper.items import ContainerStats
 
 
 class FreshProduceContainerSpider(scrapy.Spider):
