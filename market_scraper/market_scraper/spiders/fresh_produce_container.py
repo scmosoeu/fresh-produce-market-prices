@@ -13,10 +13,10 @@ class FreshProduceContainerSpider(scrapy.Spider):
         for commodity in dropdown:
             value = commodity.css("::attr(value)").get()
 
-            next_page_url = f"https://joburgmarket.co.za/jhbmarket/jhb-market/dailyprices.php?commodity={value}&containerall=1"
+            page_url = f"https://joburgmarket.co.za/jhbmarket/jhb-market/dailyprices.php?commodity={value}&containerall=1"
 
             yield scrapy.Request(
-                url=next_page_url, callback=self.parse_api
+                url=page_url, callback=self.parse_api
             )
 
     def parse_api(self, response):
