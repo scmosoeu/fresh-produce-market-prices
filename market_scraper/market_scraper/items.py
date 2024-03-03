@@ -12,19 +12,15 @@ class MarketScraperItem(scrapy.Item):
     pass
 
 
-def serialize_mtd(value):
-    return value.split(':')[1].strip()
-
-
 class FreshProduceStats(scrapy.Item):
     information_date = scrapy.Field()
     commodity = scrapy.Field()
     total_value_sold = scrapy.Field()
-    total_value_sold_mtd = scrapy.Field(serializer=serialize_mtd)
+    total_value_sold_mtd = scrapy.Field()
     total_quantity_sold = scrapy.Field()
-    total_quantity_sold_mtd = scrapy.Field(serializer=serialize_mtd)
+    total_quantity_sold_mtd = scrapy.Field()
     total_kg_sold = scrapy.Field()
-    total_kg_sold_mtd = scrapy.Field(serializer=serialize_mtd)
+    total_kg_sold_mtd = scrapy.Field()
     quantity_available = scrapy.Field()
 
 
@@ -34,11 +30,11 @@ class ContainerStats(scrapy.Item):
     container = scrapy.Field()
     quantity_available = scrapy.Field()
     value_sold = scrapy.Field()
-    value_sold_mtd = scrapy.Field(serializer=serialize_mtd)
+    value_sold_mtd = scrapy.Field()
     quantity_sold = scrapy.Field()
-    quantity_sold_mtd = scrapy.Field(serializer=serialize_mtd)
+    quantity_sold_mtd = scrapy.Field()
     kg_sold = scrapy.Field()
-    kg_sold_mtd = scrapy.Field(serializer=serialize_mtd)
+    kg_sold_mtd = scrapy.Field()
     average_price_per_kg = scrapy.Field()
 
 
