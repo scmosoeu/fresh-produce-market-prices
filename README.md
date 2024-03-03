@@ -41,6 +41,11 @@ Run a spider
 scrapy crawl spider_name
 ```
 
+Run a spider and write to file
+
+```bash
+scrapy crawl spider_name -O filename.extension
+```
 
 For data processing, there are two options:
 
