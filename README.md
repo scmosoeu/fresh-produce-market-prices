@@ -51,6 +51,10 @@ scrapy crawl spider_name -O filename.extension
 
 Define what is needed in the block of data
 
+## pipelines.py
+
+For data processing
+
 For data processing, there are two options:
 
 1. Serializer (inserted in **items.py**)
