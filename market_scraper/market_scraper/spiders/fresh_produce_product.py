@@ -26,17 +26,29 @@ class FreshProduceProductSpider(scrapy.Spider):
 
         for market_data in price_table:
 
-            yield {
-                "information_date": information_date,
-                "commodity": fresh_produce,
-                "container": market_data.css("td:first-child ::text").get(),
-                "unit_mass": market_data.css("td:nth-child(2) ::text").get(),
-                "product_combination": market_data.css("td:nth-child(3) ::text").get(),
-                "total_value_sold": market_data.css("td:nth-child(4) ::text").get(),
-                "total_quantity_sold": market_data.css("td:nth-child(5) ::text").get(),
-                "total_kg_sold": market_data.css("td:nth-child(6) ::text").get(),
-                "average": market_data.css("td:nth-child(7) ::text").get(),
-                "highest_price": market_data.css("td:nth-child(8) ::text").get(),
-                "average_price_per_kg": market_data.css("td:nth-child(9) ::text").get(),
-                "highest_price_per_kg": market_data.css("td:nth-child(10) ::text").get()
-            }
+            product_stats = ProductStats()
+
+            product_stats["information_date"] = information_date
+            product_stats["commodity"] = fresh_produce,
+            product_stats["container"] = market_data.css(
+                "td:first-child ::text").get()
+            product_stats["unit_mass"] = market_data.css(
+                "td:nth-child(2) ::text").get()
+            product_stats["product_combination"] = market_data.css(
+                "td:nth-child(3) ::text").get()
+            product_stats["total_value_sold"] = market_data.css(
+                "td:nth-child(4) ::text").get()
+            product_stats["total_quantity_sold"] = market_data.css(
+                "td:nth-child(5) ::text").get()
+            product_stats["total_kg_sold"] = market_data.css(
+                "td:nth-child(6) ::text").get()
+            product_stats["average"] = market_data.css(
+                "td:nth-child(7) ::text").get()
+            product_stats["highest_price"] = market_data.css(
+                "td:nth-child(8) ::text").get()
+            product_stats["average_price_per_kg"] = market_data.css(
+                "td:nth-child(9) ::text").get()
+            product_stats["highest_price_per_kg"] = market_data.css(
+                "td:nth-child(10) ::text").get()
+
+            yield product_stats

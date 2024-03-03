@@ -28,16 +28,27 @@ class FreshProduceContainerSpider(scrapy.Spider):
 
         for market_data in price_table:
 
-            yield {
-                "information_date": information_date,
-                "commodity": fresh_produce,
-                "container": market_data.css(".tleft2 ::text").get(),
-                "quantity_available": market_data.xpath("(.//td[@class='tleft'])[1]/text()").get(),
-                "value_sold": market_data.xpath("(.//td[@class='tleft'])[2]/text()").get(),
-                "value_sold_mtd": market_data.xpath("(.//td[@class='tleft'])[2]/br/following-sibling::text()").get(),
-                "quantity_sold": market_data.xpath("(.//td[@class='tleft'])[3]/text()").get(),
-                "quantity_sold_mtd": market_data.xpath("(.//td[@class='tleft'])[3]/br/following-sibling::text()").get(),
-                "kg_sold": market_data.xpath("(.//td[@class='tleft'])[4]/text()").get(),
-                "kg_sold_mtd": market_data.xpath("(.//td[@class='tleft'])[4]/br/following-sibling::text()").get(),
-                "average_price_per_kg": market_data.css("td.tleft:last-child ::text").get()
-            }
+            container_stats = ContainerStats()
+
+            container_stats["information_date"] = information_date
+            container_stats["commodity"] = fresh_produce
+            container_stats["container"] = market_data.css(
+                ".tleft2 ::text").get()
+            container_stats["quantity_available"] = market_data.xpath(
+                "(.//td[@class='tleft'])[1]/text()").get()
+            container_stats["value_sold"] = market_data.xpath(
+                "(.//td[@class='tleft'])[2]/text()").get()
+            container_stats["value_sold_mtd"] = market_data.xpath(
+                "(.//td[@class='tleft'])[2]/br/following-sibling::text()").get()
+            container_stats["quantity_sold"] = market_data.xpath(
+                "(.//td[@class='tleft'])[3]/text()").get()
+            container_stats["quantity_sold_mtd"] = market_data.xpath(
+                "(.//td[@class='tleft'])[3]/br/following-sibling::text()").get()
+            container_stats["kg_sold"] = market_data.xpath(
+                "(.//td[@class='tleft'])[4]/text()").get()
+            container_stats["kg_sold_mtd"] = market_data.xpath(
+                "(.//td[@class='tleft'])[4]/br/following-sibling::text()").get()
+            container_stats["average_price_per_kg"] = market_data.css(
+                "td.tleft:last-child ::text").get()
+
+            yield container_stats
