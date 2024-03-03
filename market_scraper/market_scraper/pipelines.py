@@ -27,7 +27,7 @@ class FreshProduceScraperPipeline:
 
         for float_field in float_fields:
             value = adapter.get(float_field)
-            value = value.replace(',', '')
+            value = value.replace('R', '').replace(',', '')
             adapter[float_field] = float(value)
 
         # Create int fields
@@ -66,7 +66,7 @@ class FreshProduceContainerPipeline:
 
         for float_field in float_fields:
             value = adapter.get(float_field)
-            value = value.replace(',', '')
+            value = value.replace('R', '').replace(',', '')
             adapter[float_field] = float(value)
 
         # Create int fields
@@ -107,7 +107,7 @@ class FreshProduceProductPipeline:
 
         for float_field in float_fields:
             value = adapter.get(float_field)
-            value = value.replace(',', '')
+            value = value.replace('R', '').replace(',', '')
             adapter[float_field] = float(value)
 
         # Convert total_quantity_sold to int fields
