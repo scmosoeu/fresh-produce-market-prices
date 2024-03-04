@@ -7,10 +7,13 @@ class FreshProduceContainerSpider(scrapy.Spider):
     allowed_domains = ["joburgmarket.co.za"]
     start_urls = [
         "https://joburgmarket.co.za/jhbmarket/jhb-market/dailyprices.php"]
-    
+
     custom_settings = {
         'ITEM_PIPELINES': {
             "market_scraper.pipelines.FreshProduceContainerPipeline": 300
+        },
+        'FEEDS': {
+            'data2.json': {'format': 'json'}
         }
     }
 
