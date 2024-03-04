@@ -87,7 +87,7 @@ class FreshProduceContainerPipeline:
             if '_mtd' in int_field:
                 value = value.split(':')[1].strip()
             value = value.replace(',', '')
-            adapter[int_field] = int(value)
+            adapter[int_field] = int(float(value))
 
         return item
 
@@ -121,6 +121,6 @@ class FreshProduceProductPipeline:
         # Convert total_quantity_sold to int fields
         value = adapter.get('total_quantity_sold')
         value = value.replace(',', '')
-        adapter['total_quantity_sold'] = int(value)
+        adapter['total_quantity_sold'] = int(float(value))
 
         return item
