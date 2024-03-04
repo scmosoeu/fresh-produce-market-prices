@@ -99,7 +99,11 @@ class FreshProduceProductPipeline:
 
         # Convert Commodity  lowercase
         value = adapter.get('commodity')
-        adapter['commodity'] = value[0].lower()
+        if isinstance(value, tuple):
+            value = value[0].lower()
+        else:
+            value = value.lower()
+        adapter['commodity'] = value
 
         # Convert container and product_combination to lowercase
         for field_name in ['container', 'product_combination']:
