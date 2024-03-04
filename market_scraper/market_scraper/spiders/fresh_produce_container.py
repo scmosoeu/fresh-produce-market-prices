@@ -13,7 +13,7 @@ class FreshProduceContainerSpider(scrapy.Spider):
             "market_scraper.pipelines.FreshProduceContainerPipeline": 300
         },
         'FEEDS': {
-            'data2.json': {'format': 'json'}
+            'data2.json': {'format': 'json', 'overwrite': True}
         }
     }
 
