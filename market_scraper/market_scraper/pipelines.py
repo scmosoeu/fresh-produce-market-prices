@@ -54,10 +54,17 @@ class FreshProduceContainerPipeline:
 
         adapter = ItemAdapter(item)
 
-        # Convert Commodity and container to lowercase
-        for field_name in ['commodity', 'container']:
-            value = adapter.get(field_name)
-            adapter[field_name] = value.lower()
+        # Convert Commodity  lowercase
+        value = adapter.get('commodity')
+        if isinstance(value, tuple):
+            value = value[0].lower()
+        else:
+            value = value.lower()
+        adapter['commodity'] = value
+
+        # Convert container to lowercase
+        value = adapter.get('container')
+        adapter['container'] = value.lower()
 
         # Create float fields
         float_fields = [
