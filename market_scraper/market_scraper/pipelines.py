@@ -97,8 +97,12 @@ class FreshProduceProductPipeline:
 
         adapter = ItemAdapter(item)
 
-        # Convert Commodity and container to lowercase
-        for field_name in ['commodity', 'container', 'product_combination']:
+        # Convert Commodity  lowercase
+        value = adapter.get('commodity')
+        adapter['commodity'] = value[0].lower()
+
+        # Convert container and product_combination to lowercase
+        for field_name in ['container', 'product_combination']:
             value = adapter.get(field_name)
             adapter[field_name] = value.lower()
 
