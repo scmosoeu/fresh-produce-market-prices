@@ -8,6 +8,12 @@ class FreshProduceProductSpider(scrapy.Spider):
     start_urls = [
         "https://joburgmarket.co.za/jhbmarket/jhb-market/dailyprices.php"]
 
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            "market_scraper.pipelines.FreshProduceProductPipeline": 300
+        }
+    }
+
     def parse(self, response):
         dropdown = response.css("select option:not(:first-child)")
 
