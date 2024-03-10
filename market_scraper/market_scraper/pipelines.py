@@ -183,8 +183,8 @@ class SaveDailyPricesToMSSQLPipeline:
     def close_spider(self, spider):
 
         # Close cursor & connection to database
-        self.conn.close()
         self.cur.close()
+        self.conn.close()
 
 
 class SaveContainerStatsToMSSQLPipeline:
@@ -227,8 +227,8 @@ class SaveContainerStatsToMSSQLPipeline:
     def close_spider(self, spider):
 
         # Close cursor & connection to database
-        self.conn.close()
         self.cur.close()
+        self.conn.close()
 
 
 class SaveProductStatsToMSSQLPipeline:
