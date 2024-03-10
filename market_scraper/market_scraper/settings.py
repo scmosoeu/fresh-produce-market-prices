@@ -67,7 +67,7 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     "market_scraper.pipelines.FreshProduceScraperPipeline": 300,
-    "market_scraper.pipelines.SaveDailyPricesToPostGreSQLPipeline": 400
+    "market_scraper.pipelines.SaveDailyPricesToMSSQLPipeline": 400
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
