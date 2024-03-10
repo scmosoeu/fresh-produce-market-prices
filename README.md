@@ -67,4 +67,6 @@ Create FEEDS in the settings.py file to create an output file format
 
 custom_settings insider your spider can be used to overwrite settings
 
-pip install mysql mysql-connector-python
+```bash
+pip install pyodbc
+```
