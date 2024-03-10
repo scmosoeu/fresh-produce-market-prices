@@ -18,7 +18,7 @@ pip install scrapy
 pip install ipython
 ```
 
-The ipython installation enables easier access of scrapy inside the terminal in order to test **css** or **xpath** connections to HTML elements within a website.
+The *ipython* installation enables easier access to scrapy inside the terminal to test the **css** and **xpath** connections to HTML elements within a website.
 
 Inside the **scrapy.cfg** below the [settings] section, insert:
 
