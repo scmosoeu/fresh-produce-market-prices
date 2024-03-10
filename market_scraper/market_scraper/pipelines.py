@@ -6,9 +6,10 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-from market_scraper.database_settings.config import load_config
+from .database_settings.config import load_config
+import os
 
-import psycopg2
+import pyodbc
 
 
 class FreshProduceScraperPipeline:
@@ -148,15 +149,17 @@ class SaveDailyPricesToPostGreSQLPipeline:
 
     def __init__(self) -> None:
         config = load_config()
-        self.conn = psycopg2.connect(**config)
+        self.conn = pyodbc.connect(**config)
 
         self.cur = self.conn.cursor()
+        self.cwd = os.getcwd().replace('\\', '/')
 
-        with open('resources/create_daily_prices.sql', 'r') as sql_script:
+        with open(self.cwd + '/market_scraper/resources/create_daily_prices.sql', 'r') as sql_script:
+
             self.cur.execute(sql_script.read())
 
     def process_item(self, item, spider):
-        with open('resources/insert_daily_prices.sql', 'r') as sql_script:
+        with open(self.cwd + '/market_scraper/resources/insert_daily_prices.sql', 'r') as sql_script:
             script = sql_script.read()
             self.cur.execute(
                 script.format(
