@@ -8,7 +8,7 @@ def load_config(filename: str = os.getcwd().replace('\\', '/') + '/market_scrape
 
     Parameters
     -----------
-    filename: .ini filename where postgresql details are
+    filename: .ini filename where ms sql server details are
         stored
     section: section within the .ini file where the details
         are stored 
