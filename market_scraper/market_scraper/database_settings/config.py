@@ -17,7 +17,7 @@ def load_config(filename: str = os.getcwd().replace('\\', '/') + '/market_scrape
     parser = ConfigParser()
     parser.read(filename)
 
-    # Get section, default to postgresql
+    # Get section in .ini file [section]
     config = {}
     if parser.has_section(section):
         params = parser.items(section)
