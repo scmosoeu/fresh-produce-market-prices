@@ -1,6 +1,9 @@
 # fresh-produce-market-prices
 
-Scrape fresh produce data from johannesburg market website
+Scrape fresh produce data from [johannesburg market website](https://joburgmarket.co.za/jhbmarket/jhb-market/dailyprices.php?) using a [scrapy](https://docs.scrapy.org/en/latest/) framework. The scrapped data is processed and stored in a database, for this project the database used is MS SQL Server.
+
+
+## Setup
 
 Create a virtual environment
 
@@ -14,6 +17,8 @@ Within your virtual environment
 pip install scrapy 
 pip install ipython
 ```
+
+The ipython installation enables easier access of scrapy inside the terminal in order to test **css** or **xpath** connections to HTML elements within a website.
 
 Inside the **scrapy.cfg** below the [settings]
 insert:
@@ -47,11 +52,13 @@ Run a spider and write to file
 scrapy crawl spider_name -O filename.extension
 ```
 
-## items.py
+## Scrapy File System
 
-Define what is needed in the block of data
+### items.py
 
-## pipelines.py
+Define the fields in your data
+
+### pipelines.py
 
 For data processing, validation, writing to a database
 
@@ -60,12 +67,18 @@ For data processing, there are two options:
 1. Serializer (inserted in **items.py**)
 2. Pipelines
 
-After creating Pipelines, uncomment the ITEM_PIPELINE section in settings.py
+### Settings.py
 
-Saving data:
-Create FEEDS in the settings.py file to create an output file format
+Define the **ITEM_PIPELINE** which will be responsible for the order at which the script runs. This could include data processing, connecting to a database, writting to a database, etc...
 
-custom_settings insider your spider can be used to overwrite settings
+**FEEDS** section can be created when you want to create an output file of scrapped data. This could be in a .json, or .csv format.
+
+
+For multiple scrappers following different pipelines, a **custom_settings** inside the spider can be created to assign each spider to a different pipeline. The **custom_settings** inside your spider can be used to overwrite settings
+
+## Database Connection
+
+The database used to store the scrapped data is MS SQL Server, hence the *pyodbc* module was installed. 
 
 ```bash
 pip install pyodbc
