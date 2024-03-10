@@ -229,3 +229,48 @@ class SaveContainerStatsToMSSQLPipeline:
         # Close cursor & connection to database
         self.conn.close()
         self.cur.close()
+
+
+class SaveProductStatsToMSSQLPipeline:
+
+    def __init__(self) -> None:
+        config = load_config()
+        self.conn = pyodbc.connect(**config)
+
+        self.cur = self.conn.cursor()
+        self.cwd = os.getcwd().replace('\\', '/')
+
+        with open(self.cwd + '/market_scraper/resources/create_product_stats.sql', 'r') as sql_script:
+
+            self.cur.execute(sql_script.read())
+
+    def process_item(self, item, spider):
+        with open(self.cwd + '/market_scraper/resources/insert_product_stats.sql', 'r') as sql_script:
+            script = sql_script.read()
+            self.cur.execute(
+                script.format(
+                    item['information_date'],
+                    item['commodity'],
+                    item['container'],
+                    item['unit_mass'],
+                    item['product_combination'],
+                    item['total_value_sold'],
+                    item['total_quantity_sold'],
+                    item['total_kg_sold'],
+                    item['average'],
+                    item['highest_price'],
+                    item['average_price_per_kg'],
+                    item['highest_price_per_kg']
+                )
+            )
+
+            # Execute insert of data into database
+            self.conn.commit()
+
+            return item
+
+    def close_spider(self, spider):
+
+        # Close cursor & connection to database
+        self.cur.close()
+        self.conn.close()

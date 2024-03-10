@@ -10,10 +10,8 @@ class FreshProduceProductSpider(scrapy.Spider):
 
     custom_settings = {
         'ITEM_PIPELINES': {
-            "market_scraper.pipelines.FreshProduceProductPipeline": 300
-        },
-        'FEEDS': {
-            'data3.json': {'format': 'json', 'overwrite': True}
+            "market_scraper.pipelines.FreshProduceProductPipeline": 300,
+            "market_scraper.pipelines.SaveProductStatsToMSSQLPipeline": 300
         }
     }
 
