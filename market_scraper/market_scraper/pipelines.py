@@ -119,7 +119,7 @@ class FreshProduceProductPipeline:
         # Convert container and product_combination to lowercase
         for field_name in ['container', 'product_combination']:
             value = adapter.get(field_name)
-            adapter[field_name] = value.lower()
+            adapter[field_name] = value.lower().replace("'", '')
 
         # Create float fields
         float_fields = [
