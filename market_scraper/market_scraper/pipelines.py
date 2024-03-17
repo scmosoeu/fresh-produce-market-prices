@@ -145,6 +145,39 @@ class FreshProduceProductPipeline:
         return item
 
 
+class SaveScrapingDateToMSSQLPipeline:
+
+    def __init__(self) -> None:
+        config = load_config()
+        self.conn = pyodbc.connect(**config)
+
+        self.cur = self.conn.cursor()
+        self.cwd = os.getcwd().replace('\\', '/')
+
+        with open(self.cwd + '/market_scraper/resources/create_information_date.sql', 'r') as sql_script:
+
+            self.cur.execute(sql_script.read())
+
+    def process_item(self, item, spider):
+        with open(self.cwd + '/market_scraper/resources/insert_information_date.sql', 'r') as sql_script:
+            script = sql_script.read()
+            self.cur.execute(
+                script.format(
+                    item['information_date']
+                )
+            )
+            # Execute insert of data into database
+            self.conn.commit()
+
+            return item
+
+    def close_spider(self, spider):
+
+        # Close cursor & connection to database
+        self.cur.close()
+        self.conn.close()
+
+
 class SaveDailyPricesToMSSQLPipeline:
 
     def __init__(self) -> None:

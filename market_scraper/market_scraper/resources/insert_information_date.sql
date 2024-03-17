@@ -1,3 +1,3 @@
-INSERT INTO extract_stats 
+INSERT INTO extract_date 
 VALUES 
     ('{}')
